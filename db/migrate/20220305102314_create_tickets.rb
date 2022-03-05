@@ -4,7 +4,7 @@ class CreateTickets < ActiveRecord::Migration[7.0]
 
       t.timestamps
       t.belongs_to :user
-      t.integer :code, null: false
+      t.string :code, null: false
     end
   end
 end
