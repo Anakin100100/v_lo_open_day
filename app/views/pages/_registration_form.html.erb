@@ -1,0 +1,30 @@
+<div class="bg-gray-300 p-2 text-center border-4 border-white rounded-md">
+    <h2 class="text-3xl">Zarejestruj się</h2>
+    <p class="text-xl">Ponieważ co roku mamy więcej chętnych niż możemy obsłużyć aby wziąć udział w dniach otwartych trzenba posiadać darmowy bilet. Aby uzyskać bilet należy się zarejestrować poniżej a bilet zostanie wysłany na maila</p>
+
+    <%= form_for :user do |f| %>
+       
+
+        <div class="field">
+            <%= f.label :email %><br />
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "w-100" %>
+        </div>
+
+        <div class="field">
+            <%= f.label "hasło" %>
+                <% if @minimum_password_length %>
+                <em>(<%= @minimum_password_length %> characters minimum)</em>
+                <% end %><br />
+            <%= f.password_field :password, autocomplete: "new-password" %>
+        </div>
+
+        <div class="field">
+            <%= f.label "potwierdzenie hasła" %><br />
+            <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+        </div>
+
+        <div class="actions">
+            <%= f.submit "Sign up" %>
+        </div>
+    <% end %>
+</div>
