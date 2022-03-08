@@ -1,5 +1,35 @@
-<p><%= current_user.email %></p>
+<div class="bg-green-400 p-2 rounded-md">
+  <h2 class="my-4 text-center font-bold mt-4">Twój kod biletu to: <%= Ticket.where(user_id: current_user.id).first.code  %></h2>
+  <% if @ticket.tour == "1" %>
+    <h2 class="text-center font-bold">godziny dni otwartych: 12.00:14.00</h2>
+  <% elsif @ticket.tour == "2" %>
+    <h2 class="text-center font-bold">godziny dni otwartych: 14.00:16.00</h2>
+  <% else %>
+    <h2 class="text-center font-bold">godziny dni otwartych: 16.00:18.00</h2>
+  <% end %>
 
-<p>Twój kod biltu to: <%= Ticket.where(user_id: current_user.id).first.code  %></p>
+  <h2 class="mt-8 text-center font-bold">Zmiana godziny oprowadzania: </h2>
 
-<%= button_to  "Wyloguj się", destroy_user_session_path, method: :delete %>
+  <%= form_for :ticket_tour_change, url: "/tour_selection_form", class: "m-2 justify-self-center" do |f| %>
+      <div class="field text-center">
+          <%= f.radio_button :tour, "1", disabled: @disable_radio_button_tour_1 %>
+          <%= f.label :tour, "12.00:14.00", :value => "1"  %>
+          : <%= 100 - Ticket.where(tour: "1").count %> miejsc wolnych<br/>
+
+          <%= f.radio_button :tour, "2", disabled: @disable_radio_button_tour_2 %>
+          <%= f.label :tour, "14.00:16.00", :value => "2"  %>
+          : <%= 100 - Ticket.where(tour: "2").count %> miejsc wolnych<br/>
+
+          <%= f.radio_button :tour, "3", disabled: @disable_radio_button_tour_3 %>
+          <%= f.label :tour, "16.00:18.00", :value => "3"  %>
+          : <%= 100 - Ticket.where(tour: "3").count %> miejsc wolnych
+    </div>
+    
+    
+      <%= f.submit "Potwierdź zmianę godziny" , class: "bg-blue-500 hover:bg-blue-700 mt-2 text-white font-bold text-center py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full mx-2" %>
+  <% end  %>
+    <div class="mt-2">
+      <%= button_to  "Wyloguj się", destroy_user_session_path, method: :delete, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold text-center py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full mx-2" %>
+    </div>
+  
+</div>

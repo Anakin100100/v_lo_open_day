@@ -1,0 +1,14 @@
+<p>admin panel</p>
+
+<% if @ticket == nil %>
+    <p>no ticket</p>
+<% else %>
+    <p>Found valid ticket with code: <%= @ticket.code %> for tour: <%= @ticket.tour %></p>
+<% end %>
+
+<%= form_for :code, url: "/ticket_checking_form" do |f| %>
+  <%= f.label :ticket_code %></br>
+  <%= f.text_field :ticket_code, class: "text-black" %></br>
+  <%= f.submit "Potwierdź kod"  %>
+<% end  %>
+

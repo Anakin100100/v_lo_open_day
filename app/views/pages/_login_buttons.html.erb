@@ -1,11 +1,17 @@
-<div class="text-center">
-    <p>Ponieważ co roku mamy więcej chętnych niż możemy obsłużyć aby wziąć udział w dniach otwartych trzeba posiadać darmowy bilet. Aby uzyskać bilet należy się zarejestrować poniżej a bilet będzie dostępny po zalogowaniu</p>
-</div>
-<div>
-    <button class="w-full">
-        <%= link_to "Zarejestruj się", new_user_registration_path, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
-    <button>
-</div>
+<% if Ticket.count >= 300 %>
+    <div class="text-center">
+        <p>Rejestracja została zakończona, wszystkie bilety zostały zarezerwowane</p>
+    </div>
+<% else %>
+    <div class="text-center">
+        <p>Ponieważ co roku mamy więcej chętnych niż możemy obsłużyć aby wziąć udział w dniach otwartych trzeba posiadać darmowy bilet. Aby uzyskać bilet należy się zarejestrować poniżej a bilet będzie dostępny po zalogowaniu</p>
+    </div>
+    <div>
+        <button class="w-full">
+            <%= link_to "Zarejestruj się", new_user_registration_path, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+        <button>
+    </div>
+<% end %>
 <div> 
     <button class="w-full">
         <%= link_to "Zaloguj się", new_user_session_path, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>

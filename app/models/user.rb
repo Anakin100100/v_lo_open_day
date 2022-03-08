@@ -7,7 +7,14 @@ class User < ApplicationRecord
 
   # Only after the user is confirmed we can create a ticket
   def after_confirmation
-    ticket = Ticket.new(user: self, code: SecureRandom.hex(2))
+    if Ticket.where(tour: "1").count < 100
+      @tour = "1"
+    elsif Ticket.where(tour: "2").count < 100
+      @tour = "2"
+    else
+      @tour = "3"
+    end
+    ticket = Ticket.new(user: self, code: SecureRandom.hex(2), tour: @tour)
     ticket.save 
   end
 
